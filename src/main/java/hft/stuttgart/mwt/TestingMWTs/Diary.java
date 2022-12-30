@@ -1,31 +1,42 @@
 package hft.stuttgart.mwt.TestingMWTs;
 
+import java.util.Date;
+import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+
+@Entity
 public class Diary {
-    
-    private String heading;
-    private String content;
 
-    Diary (String heading, String content){
-        this.heading = heading;
-        this.content = content;
+    private @jakarta.persistence.Id @GeneratedValue Long id;
+    private String title;
+
+    public Diary() {
     }
 
-    public void setHeading(String heading) {
-        this.heading = heading;
+    public Diary(String title) {
+
+        this.title = title;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public String getTitle() {
+        return title;
     }
 
-    public String getHeading() {
-        return heading;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getContent() {
-        return content;
+    public Long getId() {
+        return id;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Diary [Id=" + id + ", owner=" + title + "]";
+    }
+
+   
+
 }

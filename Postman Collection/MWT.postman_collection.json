@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "ca55ee1b-c0b6-4d34-b4ac-c7290a3ebba8",
+		"name": "MWT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post new diary",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Diaries",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "heading",
+						"value": "\"Test\"",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "content",
+						"value": "\"Testeintrag usw.......\"",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/diary/entry",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"diary",
+						"entry"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update diary",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"owner\": \"Lennart New\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/diary/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"diary",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Diary",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Entry",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "heading",
+						"value": "\"Test\"",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "content",
+						"value": "\"Testeintrag usw.......\"",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/diary/entry",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"diary",
+						"entry"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Entries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	]
+}
