@@ -1,19 +1,19 @@
-Um das Programm ausführen zu können sind zunächst einige Schritte zu unternehmen:
-(Es wird angenommen, dass Docker Desktop läuft und dass das Image von Postgre SQL bereits lokal existiert.)
+In order to run the program, there are a few steps to take first:
+(It is assumed that Docker Desktop is running and that the image of Postgre SQL already exists locally).
 
-Benötigte Docker Kommandos:
+Required Docker commands:
 1. docker run -e POSTGRES_PASSWORD=Welcome4$ -p 5432:5432 -d postgres
-2. docker exec -it <NAME DES CONTAINERS> bash 
-    Den Namen des Containers kann man mit: "docker container ps" herausfinden
+2. docker exec -it <NAME OF CONTAINER> bash 
+    You can find out the name of the container with: "docker container ps".
 3. psql -h localhost -U postgres
 4. \l
-    => Zeigt an die existierenden Datenbanken an
+    => displays the existing databases
 5. \c postgres
-    => Mit Datenbank "postgres" verbinden
+    => Connect to database "postgres
 6. \dt 
-    => zeigt an, dass keine Tabellen existieren
-7. Nun starten wir die Java Anwendung
-8. \dt zeigt nun die erstellten Datenbanktabellen
-9. Nun können die im Ordner "Postman Collection" enhaltenen Requests ausgeführt werden.
-    => Grundlegende CRUD-Funktionen sind enthalten für die Verwaltung der Tagebücher. Die Tagebucheinträge folgen noch.
+    => indicates that there are no tables
+7. now we start the Java application
+8. \dt now shows the created database tables
+9. now we can execute the requests contained in the "Postman Collection" folder.
+    => Basic CRUD functions are included for managing the diaries. The diary entries will follow.
 
