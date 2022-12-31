@@ -129,6 +129,60 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get Entry",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Entry",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update entry",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "heading",
+						"value": "\"Test\"",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "content",
+						"value": "\"Testeintrag usw.......\"",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/diary/entry",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"diary",
+						"entry"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

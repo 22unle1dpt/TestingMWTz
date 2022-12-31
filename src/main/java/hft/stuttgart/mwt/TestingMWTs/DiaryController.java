@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -73,19 +74,29 @@ public class DiaryController {
     }
 
     // Diary Entries
-/*    @GetMapping("/diary/{id}/entries")
-    Optional<DiaryEntry> getAllEntriesPerId(@PathVariable Long id) {
-        Optional<DiaryEntry> diaryEntries = entryRepository.getEntry(id);
-        return diaryEntries;
-      /*   if (diary.isEmpty()) {
+    @GetMapping("/diary/{id}/entries")
+    List<DiaryEntry> allEntriesPerId(@PathVariable Long id) {
+        List<DiaryEntry> diaryEntries = entryRepository.findAllEntriesPerId(id);
+        if (diaryEntries.isEmpty()) {
             // throw new DiaryNotFoundException(id);
-            return  "Not Found id =" + id;
+            // log.warn("Not found", diaryEntries);
+            return diaryEntries;
         } else {
-            entryRepository
-            return foundDiary.toString(); 
-        }*/
-        
- 
+            return diaryEntries;
+        }
+    }
+
+    @GetMapping("/diaryEntry/{id}")
+    DiaryEntry getEntryById(@PathVariable Long id) {
+        Optional<DiaryEntry> diaryEntry = entryRepository.findById(id);
+        if (diaryEntry.isEmpty()) {
+            // throw new DiaryNotFoundException(id);
+            return diaryEntry.get();
+        } else {
+            DiaryEntry foundDiary = diaryEntry.get();
+            return foundDiary;
+        }
+    }
 
     @PostMapping("/diary/{id}/newEntry")
     public String createDiaryEntry(@PathVariable Long id, @RequestBody DiaryEntry diaryEntry) {
@@ -96,4 +107,24 @@ public class DiaryController {
         return "Created Diary Entry: " + newDiaryEntry.toString();
     }
 
+    @DeleteMapping("/diaryEntry/{id}")
+    void deleteEntryById(@PathVariable Long id) {
+        entryRepository.deleteById(id);
+    }
+
+    @PutMapping("/diaryEntry/{id}")
+    String updateEntryById(@RequestBody DiaryEntry newDiaryEntry, @PathVariable Long id) {
+        if (entryRepository.findById(id).isEmpty()) {
+            DiaryEntry diaryEntry = newDiaryEntry;
+            entryRepository.save(diaryEntry);
+            return "Created Diary Entry: " + diaryEntry;
+        } else {
+            DiaryEntry entryFromDB = entryRepository.findById(id).get();
+            entryFromDB.setContent(newDiaryEntry.getContent());
+            entryFromDB.setHeading(newDiaryEntry.getHeading());
+            entryRepository.save(entryFromDB);
+            return "Updated Diary: " + entryFromDB;
+        }
+
+    }
 }
