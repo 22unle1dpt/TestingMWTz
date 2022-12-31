@@ -1,6 +1,7 @@
 package hft.stuttgart.mwt.TestingMWTs;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,31 +14,36 @@ public class DiaryEntry {
     private String diary;
     private String heading;
     private String content;
-    private Date date;
+    private LocalDateTime date;
 
 
     DiaryEntry(){}
 
     
 
-    public DiaryEntry(Long diaryId, String diary, String heading, String content) {
+    public DiaryEntry(Long diaryId, String diary, String heading, String content, LocalDateTime date) {
         this.diaryId = diaryId;
         this.diary = diary;
         this.heading = heading;
         this.content = content;
-    //    this.date = date;
+        this.date = date;
     }
 
     
+    public DiaryEntry(String heading, String content, LocalDateTime date) {
+        this.heading = heading;
+        this.content = content;
+        this.date = date;
+    }
+
     public DiaryEntry(String heading, String content) {
         this.heading = heading;
         this.content = content;
-    //    this.date = date;
     }
 
 
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
@@ -53,7 +59,7 @@ public class DiaryEntry {
         this.heading = heading;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

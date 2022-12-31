@@ -1,6 +1,8 @@
 package hft.stuttgart.mwt.TestingMWTs;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -101,8 +103,9 @@ public class DiaryController {
     @PostMapping("/diary/{id}/newEntry")
     public String createDiaryEntry(@PathVariable Long id, @RequestBody DiaryEntry diaryEntry) {
         Diary diary = getDiaryById(id);
+        LocalDateTime dateTime = LocalDateTime.now();
         DiaryEntry newDiaryEntry = new DiaryEntry(diary.getId(), diary.getTitle(), diaryEntry.getHeading(),
-                diaryEntry.getContent());
+                diaryEntry.getContent(), dateTime);
         entryRepository.save(newDiaryEntry);
         return "Created Diary Entry: " + newDiaryEntry.toString();
     }
