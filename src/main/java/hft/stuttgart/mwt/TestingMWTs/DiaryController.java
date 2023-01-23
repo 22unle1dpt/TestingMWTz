@@ -17,17 +17,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.http.HttpStatus;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
 public class DiaryController {
 
     private final DiaryRepository repository;
     private final DiaryEntryRepository entryRepository;
+    private final List<Diary> diaryList;
 
-    DiaryController(DiaryRepository repository, DiaryEntryRepository entryRepository) {
+    DiaryController(DiaryRepository repository, DiaryEntryRepository entryRepository, List<Diary> diaryList) {
         this.repository = repository;
         this.entryRepository = entryRepository;
+        this.diaryList = diaryList;
     }
 
     // Diaries
@@ -130,4 +140,17 @@ public class DiaryController {
         }
 
     }
+
+    @Operation (summary = "Returns a list of Diaries")
+    @GetMapping(value = "/", produces="application/json")
+    @ApiResponses(value = 
+    {
+        @ApiResponse(responseCode = "200", description = "List all items", content = @Content)
+    })
+    @ResponseStatus(HttpStatus.OK)
+    public List <Diary> getDiaryList(){
+        return diaryList;
+    }
+
+
 }
